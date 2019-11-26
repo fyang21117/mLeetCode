@@ -1,0 +1,230 @@
+
+/*
+* 20191127
+* 递归代码模板：
+*
+*/
+public void recur(int level, int param){
+
+	//terminator
+	    if(level > MAX_LEVEL){
+	//process result
+	    return;
+	    }
+	
+	//process current logic
+	process(level, param);
+	
+	//drill down
+	recur( level : level + 1, new Param);
+
+	//restore current status
+}
+
+
+
+
+/*
+* 20191127
+* 分治代码模板：
+*
+*/
+def divide_conquer(problem, param1, param2, ...):
+	#recursion terminator
+	if problem is None:
+	  print_result
+	  return
+
+	#prepare data
+	data = prepare_data(problem)
+	subproblems = split_problem(problem, data)
+
+	#conquer subproblems
+	subresult1 = self.divide_conquer(subproblems[0], p1, ...)
+	subresult2 = self.divide_conquer(subproblems[1], p1, ...)
+	subresult3 = self.divide_conquer(subproblems[2], p1, ...)
+	...
+
+	#process and generate the final result
+	result = process_result(subresult1, subresult2, subresult3, ...)
+
+	#revert the current level states
+
+
+
+/*
+* 20191127
+* DFS代码模板：
+*
+*/
+(1)递归写法：
+visited = set()
+
+def dfs(node, visited):
+
+    #terminator
+    #already visited
+    if node in visited:
+	return
+
+    visited.add(node)
+
+    #process current node here...
+	for next_node in node.children():
+	    if not next_node in visited:
+		dfs(next_node, visited)
+
+(2)非递归写法：
+def DFS(self,tree):
+
+    if tree.root is None:
+	return []
+
+    visited, stack = [],[tree.root]
+
+    while stack:
+	node = stack.pop()
+	visited.add(node)
+
+	process(node)
+	node = generate_related_nodes(node)
+	stack.push(nodes)
+
+	#other processing work
+
+
+/*
+* 20191127
+* BFS代码模板：
+*
+*/
+def BFS(graph, start, end)
+	queue = []
+	queue.append([start])
+
+	while queue:
+	    node = queue.pop()
+	    visited.add(node)
+	
+	    process(node)
+	    nodes = generate_related_nodes(node)
+	    queue.push(nodes)
+
+	#other processing work
+
+
+/*
+* 20191127
+* 二分查找代码模板：
+*
+*/
+
+left, right = 0, len(array)-1
+
+while left <=right :
+	mid = (left +right)/2
+
+	#find the target
+	if array[mid] == target:
+	    break or return result
+
+	elif array[mid] < target:
+		left = mid + 1
+	else:
+		right = mid - 1
+		
+
+/*
+* 20191127
+* A*代码模板：
+* 高级搜索
+*/
+
+def AstarSearch(graph, start, end):
+
+    #优先级 -> 估价函数
+    pq = collections.priority_queue()
+    pq.append([start])
+    visited.add(start)
+
+    while pq:
+	node = pq.pop()	#can add more intelligence here?
+	visited.add(node)
+	
+	process(node)
+	nodes = generate_related_nodes(node)
+	unvisited = [node for node in nodes if node not in visited]
+	pq.push(unvisited)
+
+
+/**
+ * //二叉树遍历
+ * //前序遍历：根左右。中序：左根右。后序：左右根
+ * //Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer>res = new ArrayList<>();
+        helper(root,res);
+        return res;
+    }
+    public void helper(TreeNode root,List<Integer>res){
+        if(root != null){
+            res.add(root.val);
+            if(root.left != null){
+                helper(root.left,res);
+            }
+            if(root.right != null){
+                helper(root.right,res);
+            }
+        }
+    }
+}
+
+/*
+* 20191127
+* 位运算比取模等运算更快
+*/
+【判断奇偶】
+ｘ％２＝＝１　－＞　（ｘ＆１）＝＝１
+ｘ％２＝＝０　－＞　（ｘ＆１）＝＝０
+
+【除以２】
+ｘ／２　－＞　ｘ＞＞１
+ｍｉｄ＝（Ｌ＋Ｒ）／２　－＞ｍｉｄ＝（Ｌ＋Ｒ）＞＞１
+
+【清零最低位的１】
+ｘ＝ｘ＆（ｘ－１）
+
+【得到最低位的１。其中-X: 取反加一】
+ｘ＆－ｘ		＝＞最低位的１
+（ｘ＆～ｘ）	＝＞０
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
