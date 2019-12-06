@@ -366,9 +366,25 @@ public static void merge(int []array,int left,int mid,int right){
 
 
 
+/*
+* 20191206
+* 高级字符串操作--最长子串、子序列
+*/
+1.Longest common sequence（最长子序列）
+(1)DP方程:
+if(s1[i-1]==s2[j-1])
+	dp[i][j]=dp[i-1][j-1]+1;
+else
+	dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
 
+2.Longest common substring(最长子串)
+(1)DP方程:
+if(s1[i-1]==s2[j-1])
+	dp[i][j]=dp[i-1][j-1]+1;
+else
+	dp[i][j]=0;
 
-
+3.Edit distance(编辑距离)
 
 
 
