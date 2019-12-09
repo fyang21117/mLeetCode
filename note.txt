@@ -1,7 +1,6 @@
-
 /*
 * 20191127
-* µİ¹é´úÂëÄ£°å£º
+* é€’å½’ä»£ç æ¨¡æ¿ï¼š
 *
 */
 public void recur(int level, int param){
@@ -26,7 +25,7 @@ public void recur(int level, int param){
 
 /*
 * 20191127
-* ·ÖÖÎ´úÂëÄ£°å£º
+* åˆ†æ²»ä»£ç æ¨¡æ¿ï¼š
 *
 */
 def divide_conquer(problem, param1, param2, ...):
@@ -54,10 +53,10 @@ def divide_conquer(problem, param1, param2, ...):
 
 /*
 * 20191127
-* DFS´úÂëÄ£°å£º
+* DFSä»£ç æ¨¡æ¿ï¼š
 *
 */
-(1)µİ¹éĞ´·¨£º
+(1)é€’å½’å†™æ³•ï¼š
 visited = set()
 
 def dfs(node, visited):
@@ -74,7 +73,7 @@ def dfs(node, visited):
 	    if not next_node in visited:
 		dfs(next_node, visited)
 
-(2)·Çµİ¹éĞ´·¨£º
+(2)éé€’å½’å†™æ³•ï¼š
 def DFS(self,tree):
 
     if tree.root is None:
@@ -95,7 +94,7 @@ def DFS(self,tree):
 
 /*
 * 20191127
-* BFS´úÂëÄ£°å£º
+* BFSä»£ç æ¨¡æ¿ï¼š
 *
 */
 def BFS(graph, start, end)
@@ -115,7 +114,7 @@ def BFS(graph, start, end)
 
 /*
 * 20191127
-* ¶ş·Ö²éÕÒ´úÂëÄ£°å£º
+* äºŒåˆ†æŸ¥æ‰¾ä»£ç æ¨¡æ¿ï¼š
 *
 */
 
@@ -136,13 +135,13 @@ while left <=right :
 
 /*
 * 20191127
-* A*´úÂëÄ£°å£º
-* ¸ß¼¶ËÑË÷
+* A*ä»£ç æ¨¡æ¿ï¼š
+* é«˜çº§æœç´¢
 */
 
 def AstarSearch(graph, start, end):
 
-    #ÓÅÏÈ¼¶ -> ¹À¼Ûº¯Êı
+    #ä¼˜å…ˆçº§ -> ä¼°ä»·å‡½æ•°
     pq = collections.priority_queue()
     pq.append([start])
     visited.add(start)
@@ -158,8 +157,8 @@ def AstarSearch(graph, start, end):
 
 
 /**
- * //¶ş²æÊ÷±éÀú
- * //Ç°Ğò±éÀú£º¸ù×óÓÒ¡£ÖĞĞò£º×ó¸ùÓÒ¡£ºóĞò£º×óÓÒ¸ù
+ * //äºŒå‰æ ‘éå†
+ * //å‰åºéå†ï¼šæ ¹å·¦å³ã€‚ä¸­åºï¼šå·¦æ ¹å³ã€‚ååºï¼šå·¦å³æ ¹
  * //Definition for a binary tree node.
  * public class TreeNode {
  *     int val;
@@ -169,12 +168,12 @@ def AstarSearch(graph, start, end):
  * }
  */
 class Solution {
-    public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer>res = new ArrayList<>();
+    public List<Integer> preorderTraversal(final TreeNode root) {
+        final List<Integer>res = new ArrayList<>();
         helper(root,res);
         return res;
     }
-    public void helper(TreeNode root,List<Integer>res){
+    public void helper(final TreeNode root,final List<Integer>res){
         if(root != null){
             res.add(root.val);
             if(root.left != null){
@@ -189,37 +188,37 @@ class Solution {
 
 /*
 * 20191127
-* Î»ÔËËã±ÈÈ¡Ä£µÈÔËËã¸ü¿ì
+* ä½è¿ç®—æ¯”å–æ¨¡ç­‰è¿ç®—æ›´å¿«
 */
-¡¾ÅĞ¶ÏÆæÅ¼¡¿
-£ø£¥£²£½£½£±¡¡£­£¾¡¡£¨£ø£¦£±£©£½£½£±
-£ø£¥£²£½£½£°¡¡£­£¾¡¡£¨£ø£¦£±£©£½£½£°
+ã€åˆ¤æ–­å¥‡å¶ã€‘
+ï½˜ï¼…ï¼’ï¼ï¼ï¼‘ã€€ï¼ï¼ã€€ï¼ˆï½˜ï¼†ï¼‘ï¼‰ï¼ï¼ï¼‘
+ï½˜ï¼…ï¼’ï¼ï¼ï¼ã€€ï¼ï¼ã€€ï¼ˆï½˜ï¼†ï¼‘ï¼‰ï¼ï¼ï¼
 
-¡¾³ıÒÔ£²¡¿
-£ø£¯£²¡¡£­£¾¡¡£ø£¾£¾£±
-£í£é£ä£½£¨£Ì£«£Ò£©£¯£²¡¡£­£¾£í£é£ä£½£¨£Ì£«£Ò£©£¾£¾£±
+ã€é™¤ä»¥ï¼’ã€‘
+ï½˜ï¼ï¼’ã€€ï¼ï¼ã€€ï½˜ï¼ï¼ï¼‘
+ï½ï½‰ï½„ï¼ï¼ˆï¼¬ï¼‹ï¼²ï¼‰ï¼ï¼’ã€€ï¼ï¼ï½ï½‰ï½„ï¼ï¼ˆï¼¬ï¼‹ï¼²ï¼‰ï¼ï¼ï¼‘
 
-¡¾ÇåÁã×îµÍÎ»µÄ£±¡¿
-£ø£½£ø£¦£¨£ø£­£±£©
+ã€æ¸…é›¶æœ€ä½ä½çš„ï¼‘ã€‘
+ï½˜ï¼ï½˜ï¼†ï¼ˆï½˜ï¼ï¼‘ï¼‰
 
-¡¾µÃµ½×îµÍÎ»µÄ£±¡£ÆäÖĞ-X: È¡·´¼ÓÒ»¡¿
-£ø£¦£­£ø		£½£¾×îµÍÎ»µÄ£±
-£¨£ø£¦¡«£ø£©	£½£¾£°
+ã€å¾—åˆ°æœ€ä½ä½çš„ï¼‘ã€‚å…¶ä¸­-X: å–ååŠ ä¸€ã€‘
+ï½˜ï¼†ï¼ï½˜		ï¼ï¼æœ€ä½ä½çš„ï¼‘
+ï¼ˆï½˜ï¼†ï½ï½˜ï¼‰	ï¼ï¼ï¼
 
 
 
 
 /*
 * 20191128
-* ³õ¼¶ÅÅĞò--O(n^2)
+* åˆçº§æ’åº--O(n^2)
 */
 
-1.Ñ¡ÔñÅÅĞò£¨Selection Sort£©
-  Ã¿´ÎÕÒ×îĞ¡Öµ£¬È»ºó·Åµ½´ıÅÅĞòÊı×éµÄÆğÊ¼Î»ÖÃ¡£
+1.é€‰æ‹©æ’åºï¼ˆSelection Sortï¼‰
+  æ¯æ¬¡æ‰¾æœ€å°å€¼ï¼Œç„¶åæ”¾åˆ°å¾…æ’åºæ•°ç»„çš„èµ·å§‹ä½ç½®ã€‚
 
-´úÂëÄ£°å£º
-public int[] selectionSort(int []arr){
-	int len = arr.length;
+ä»£ç æ¨¡æ¿ï¼š
+public int[] selectionSort(final int []arr){
+	final int len = arr.length;
 	int minIndex,temp;
 	for(int i=0;i<len-1;i++){
 	   minIndex = i;
@@ -236,12 +235,12 @@ public int[] selectionSort(int []arr){
 
 
 
-2.²åÈëÅÅĞò£¨Insertion Sort£©
-  ´ÓÇ°µ½ºóÖğ²½¹¹½¨ÓĞĞòĞòÁĞ£»¶ÔÓÚÎ´ÅÅĞòÊı¾İ£¬ÔÚÒÑÅÅĞòĞòÁĞÖĞ´ÓºóÏòÇ°É¨Ãè£¬ÕÒµ½ÏàÓ¦Î»ÖÃ²¢²åÈë¡£
+2.æ’å…¥æ’åºï¼ˆInsertion Sortï¼‰
+  ä»å‰åˆ°åé€æ­¥æ„å»ºæœ‰åºåºåˆ—ï¼›å¯¹äºæœªæ’åºæ•°æ®ï¼Œåœ¨å·²æ’åºåºåˆ—ä¸­ä»åå‘å‰æ‰«æï¼Œæ‰¾åˆ°ç›¸åº”ä½ç½®å¹¶æ’å…¥ã€‚
 
-´úÂëÄ£°å£º
-public int[] insertionSort(int []arr){
-	int len = arr.length;
+ä»£ç æ¨¡æ¿ï¼š
+public int[] insertionSort(final int []arr){
+	final int len = arr.length;
 	int preIndex , current;
 	for(int i=1;i<len;i++){
 	   preIndex = i-1;
@@ -256,12 +255,12 @@ public int[] insertionSort(int []arr){
 }
 
 
-3.Ã°ÅİÅÅĞò£¨Bubble Sort£©
-  Ç¶Ì×Ñ­»·£¬Ã¿´Î²é¿´ÏàÁÚµÄÔªËØÈç¹ûÄæĞò£¬Ôò½»»»¡£
+3.å†’æ³¡æ’åºï¼ˆBubble Sortï¼‰
+  åµŒå¥—å¾ªç¯ï¼Œæ¯æ¬¡æŸ¥çœ‹ç›¸é‚»çš„å…ƒç´ å¦‚æœé€†åºï¼Œåˆ™äº¤æ¢ã€‚
 
-´úÂëÄ£°å£º
-public int[] bubbleSort(int []arr){
-	int len = arr.length;
+ä»£ç æ¨¡æ¿ï¼š
+public int[] bubbleSort(final int []arr){
+	final int len = arr.length;
 	int temp;
 	for(int i=0;i<len-1;i++){
 	   for(int j=i+1;j<len;j++){
@@ -278,54 +277,55 @@ public int[] bubbleSort(int []arr){
 
 /*
 * 20191128
-* ¸ß¼¶ÅÅĞò--O(nlogn)
+* é«˜çº§æ’åº--O(nlogn)
 */
 
-1.¿ìËÙÅÅĞò£¨Quick Sort£©
-Êı×éÈ¡±ê¸Ëpivot£¬½«Ğ¡ÔªËØ·Åpivot×ó±ß£¬´óÔªËØ·ÅpivotÓÒ±ß£¬È»ºóÒÀ´Î¶Ô×ó±ßºÍÓÒ±ßµÄ×ÓÊı×é¼ÌĞø¿ìÅÅ£¬ÒÔ´ïµ½Õû¸öĞòÁĞÓĞĞò¡£
+1.å¿«é€Ÿæ’åºï¼ˆQuick Sortï¼‰
+æ•°ç»„å–æ ‡æ†pivotï¼Œå°†å°å…ƒç´ æ”¾pivotå·¦è¾¹ï¼Œå¤§å…ƒç´ æ”¾pivotå³è¾¹ï¼Œç„¶åä¾æ¬¡å¯¹å·¦è¾¹å’Œå³è¾¹çš„å­æ•°ç»„ç»§ç»­å¿«æ’ï¼Œä»¥è¾¾åˆ°æ•´ä¸ªåºåˆ—æœ‰åºã€‚
 
-´úÂëÄ£°å£º
-public static void quickSort(int []array,int begin,int end){
+ä»£ç æ¨¡æ¿ï¼š
+public static void quickSort(final int []array,final int begin,final int end){
 	if(end <= begin) return;
-	int pivot = partition(array,begin,end);
+	final int pivot = partition(array,begin,end);
 	quickSort(array,begin,pivot-1);
 	quickSort(array,pivot+1,end);
 }
-static int partition(int []a,int begin,int end){
-	//pivot:±ê¸ËÎ»ÖÃ
-	//counter£ºĞ¡ÓÚpivotµÄÔªËØ¸öÊı
-	int pivot = end,counter = begin;
+static int partition(final int []a,final int begin,final int end){
+	//pivot:æ ‡æ†ä½ç½®
+	//counterï¼šå°äºpivotçš„å…ƒç´ ä¸ªæ•°
+	final int pivot = end;
+	int counter = begin;
 	for(int i=begin;i<end;i++){
 	   if(a[i]<a[pivot]){
-		int temp = a[counter];
+		final int temp = a[counter];
 		a[counter] = a[i];
 		a[i] = temp;
 		counter++;
 	   }
 	}
-	int temp = a[pivot];
+	final int temp = a[pivot];
 	a[piviot] = a[i];
 	a[i] = temp;
 	return counter;
 }
 
 
-2.¹é²¢ÅÅĞò£¨Merge Sort£©--·ÖÖÎË¼Ïë
-(1)°Ñ³¤¶ÈÎªnµÄÊäÈëĞòÁĞ·Ö³ÉÁ½¸ö³¤¶ÈÎªn/2µÄ×ÓĞòÁĞ£»
-£¨2£©¶ÔÕâÁ½¸ö×ÓĞòÁĞ·Ö±ğ²ÉÓÃ¹é²¢ÅÅĞò£»
-£¨3£©½«Á½¸öÅÅĞòºÃµÄ×ÓĞòÁĞºÏ²¢³ÉÒ»¸ö×îÖÕµÄÅÅĞòĞòÁĞ¡£
+2.å½’å¹¶æ’åºï¼ˆMerge Sortï¼‰--åˆ†æ²»æ€æƒ³
+(1)æŠŠé•¿åº¦ä¸ºnçš„è¾“å…¥åºåˆ—åˆ†æˆä¸¤ä¸ªé•¿åº¦ä¸ºn/2çš„å­åºåˆ—ï¼›
+ï¼ˆ2ï¼‰å¯¹è¿™ä¸¤ä¸ªå­åºåˆ—åˆ†åˆ«é‡‡ç”¨å½’å¹¶æ’åºï¼›
+ï¼ˆ3ï¼‰å°†ä¸¤ä¸ªæ’åºå¥½çš„å­åºåˆ—åˆå¹¶æˆä¸€ä¸ªæœ€ç»ˆçš„æ’åºåºåˆ—ã€‚
 
-´úÂëÄ£°å£º
-public static void mergeSort(int []array,int left,int right){
+ä»£ç æ¨¡æ¿ï¼š
+public static void mergeSort(final int []array,final int left,final int right){
 	if(right <= left) return;
-	int mid = (left + right)>>1;//(left+right)/2
+	final int mid = (left + right)>>1;//(left+right)/2
 	mergeSort(array,left,mid);
 	mergeSort(array,mid+1,right);
 	merge(array,left,mid,right);
 }
-public static void merge(int []array,int left,int mid,int right){
-   //ÖĞ¼äÊı×é
-   int []temp = new int[right - left +1];
+public static void merge(final int []array,final int left,final int mid,final int right){
+   //ä¸­é—´æ•°ç»„
+   final int []temp = new int[right - left +1];
    int i =left,j =mid+1,k=0;
 
    while(i<=mid && j<=right){
@@ -339,28 +339,28 @@ public static void merge(int []array,int left,int mid,int right){
    //System.arraycopy(a,start1,b,start2,length);
 }
 
-±È½Ï£º
-¹é²¢ºÍ¿ìÅÅ¾ßÓĞÏàËÆĞÔ£¬µ«²½ÖèË³ĞòÏà·´¡£
-¹é²¢£ºÏÈÅÅĞò×óÓÒ×ÓÊı×é£¬È»ºóºÏ²¢Á½¸öÓĞĞò×ÓÊı×é¡£
-¿ìÅÅ£ºÏÈµ÷Åä³ö×óÓÒ×ÓÊı×é£¬È»ºó¶ÔÓÚ×óÓÒ×ÓÊı×é½øĞĞÅÅĞò¡£
+æ¯”è¾ƒï¼š
+å½’å¹¶å’Œå¿«æ’å…·æœ‰ç›¸ä¼¼æ€§ï¼Œä½†æ­¥éª¤é¡ºåºç›¸åã€‚
+å½’å¹¶ï¼šå…ˆæ’åºå·¦å³å­æ•°ç»„ï¼Œç„¶ååˆå¹¶ä¸¤ä¸ªæœ‰åºå­æ•°ç»„ã€‚
+å¿«æ’ï¼šå…ˆè°ƒé…å‡ºå·¦å³å­æ•°ç»„ï¼Œç„¶åå¯¹äºå·¦å³å­æ•°ç»„è¿›è¡Œæ’åºã€‚
 
 
 
 /*
 * 20191129
-* ÌØÊâÅÅĞò--O(n)
+* ç‰¹æ®Šæ’åº--O(n)
 */
 
-1.¼ÆÊıÅÅĞò£¨Conuting Sort£©
-¼ÆÊıÅÅĞòÒªÇóÊäÈëµÄÊı¾İ±ØĞëÊÇÓĞÈ·¶¨·¶Î§µÄÕûÊı¡£½«ÊäÈëµÄÊı¾İÖµ×ª»¯Îª¼üÖµ´æ´¢ÔÚ¶îÍâ¿ª±ÙµÄÊı×é¿Õ¼äÖĞ£»È»ºóÒÀ´Î°Ñ¼ÆÊı´óÓÚ1µÄÌî³ä»ØÔ­Êı×é¡£
+1.è®¡æ•°æ’åºï¼ˆConuting Sortï¼‰
+è®¡æ•°æ’åºè¦æ±‚è¾“å…¥çš„æ•°æ®å¿…é¡»æ˜¯æœ‰ç¡®å®šèŒƒå›´çš„æ•´æ•°ã€‚å°†è¾“å…¥çš„æ•°æ®å€¼è½¬åŒ–ä¸ºé”®å€¼å­˜å‚¨åœ¨é¢å¤–å¼€è¾Ÿçš„æ•°ç»„ç©ºé—´ä¸­ï¼›ç„¶åä¾æ¬¡æŠŠè®¡æ•°å¤§äº1çš„å¡«å……å›åŸæ•°ç»„ã€‚
 
 
-2.Í°ÅÅĞò£¨Bucket Sort£©
-Í°ÅÅĞòµÄ¹¤×÷Ô­Àí£º¼ÙÉèÊäÈëÊı¾İ·ş´Ó¾ùÔÈ·Ö²¼£¬½«Êı¾İ·Öµ½ÓĞÏŞÊıÁ¿µÄÍ°Àï£¬Ã¿¸öÍ°ÔÙ·Ö±ğÅÅĞò£¨¿ÉÄÜÊ¹ÓÃ±ğµÄÅÅĞòËã·¨»òÒÔµİ¹é·½Ê½£©¡£
+2.æ¡¶æ’åºï¼ˆBucket Sortï¼‰
+æ¡¶æ’åºçš„å·¥ä½œåŸç†ï¼šå‡è®¾è¾“å…¥æ•°æ®æœä»å‡åŒ€åˆ†å¸ƒï¼Œå°†æ•°æ®åˆ†åˆ°æœ‰é™æ•°é‡çš„æ¡¶é‡Œï¼Œæ¯ä¸ªæ¡¶å†åˆ†åˆ«æ’åºï¼ˆå¯èƒ½ä½¿ç”¨åˆ«çš„æ’åºç®—æ³•æˆ–ä»¥é€’å½’æ–¹å¼ï¼‰ã€‚
 
 
-3.»ùÊıÅÅĞò£¨Radix Sort£©
-»ùÊıÅÅĞòÊÇ°´ÕÕµÍÎ»ÏÈÅÅĞò£¬È»ºóÊÕ¼¯£»ÔÙ°´ÕÕ¸ßÎ»ÅÅĞò£¬È»ºóÔÙÊÕ¼¯£»ÒÔ´ËÀàÍÆ£¬Ö±µ½×î¸ßÎ»¡££¨ÓĞĞ©ÊôĞÔÊÇÓĞÓÅÏÈ¼¶Ë³ĞòµÄ£¬ÏÈ°´µÍÓÅÏÈ¼¶ÅÅĞò£¬ÔÙ°´¸ßÓÅÏÈ¼¶ÅÅĞò£©¡£
+3.åŸºæ•°æ’åºï¼ˆRadix Sortï¼‰
+åŸºæ•°æ’åºæ˜¯æŒ‰ç…§ä½ä½å…ˆæ’åºï¼Œç„¶åæ”¶é›†ï¼›å†æŒ‰ç…§é«˜ä½æ’åºï¼Œç„¶åå†æ”¶é›†ï¼›ä»¥æ­¤ç±»æ¨ï¼Œç›´åˆ°æœ€é«˜ä½ã€‚ï¼ˆæœ‰äº›å±æ€§æ˜¯æœ‰ä¼˜å…ˆçº§é¡ºåºçš„ï¼Œå…ˆæŒ‰ä½ä¼˜å…ˆçº§æ’åºï¼Œå†æŒ‰é«˜ä¼˜å…ˆçº§æ’åºï¼‰ã€‚
 
 
 
@@ -368,24 +368,33 @@ public static void merge(int []array,int left,int mid,int right){
 
 /*
 * 20191206
-* ¸ß¼¶×Ö·û´®²Ù×÷--×î³¤×Ó´®¡¢×ÓĞòÁĞ
+* é«˜çº§å­—ç¬¦ä¸²æ“ä½œ--æœ€é•¿å­ä¸²ã€å­åºåˆ—
 */
-1.Longest common sequence£¨×î³¤×ÓĞòÁĞ£©
-(1)DP·½³Ì:
+1.Longest common sequenceï¼ˆæœ€é•¿å­åºåˆ—ï¼‰
+(1)DPæ–¹ç¨‹:
 if(s1[i-1]==s2[j-1])
 	dp[i][j]=dp[i-1][j-1]+1;
 else
 	dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
 
-2.Longest common substring(×î³¤×Ó´®)
-(1)DP·½³Ì:
+2.Longest common substring(æœ€é•¿å­ä¸²)
+(1)DPæ–¹ç¨‹:
 if(s1[i-1]==s2[j-1])
 	dp[i][j]=dp[i-1][j-1]+1;
 else
 	dp[i][j]=0;
 
-3.Edit distance(±à¼­¾àÀë)
+3.Edit distance(ç¼–è¾‘è·ç¦»)
 
+/*
+* 20191207
+* Rabin-Karpç®—æ³•
+*/
+ç®—æ³•æ€æƒ³ï¼š
+1.å‡è®¾å­ä¸²çš„é•¿åº¦ä¸ºMï¼ˆpatï¼‰ï¼Œç›®æ ‡å­—ç¬¦ä¸²çš„é•¿åº¦ä¸ºNï¼ˆtxtï¼‰
+2.è®¡ç®—å­ä¸²çš„hashå€¼hash_pat
+3.è®¡ç®—ç›®æ ‡å­—ç¬¦ä¸²txtä¸­æ¯ä¸ªé•¿åº¦ä¸ºMçš„å­ä¸²çš„hashå€¼ï¼ˆå…±éœ€è¦è®¡ç®—N-M+1æ¬¡ï¼‰
+4.æ¯”è¾ƒhashå€¼ï¼šå¦‚æœä¸åŒå¿…ç„¶ä¸åŒ¹é…ï¼›å¦‚æœç›¸åŒå†ä½¿ç”¨æœ´ç´ ç®—æ³•åˆ¤æ–­
 
 
 
