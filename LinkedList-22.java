@@ -1,10 +1,17 @@
 
+import java.io.IOError;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.AbstractSequentialList;
 import java.util.Collection;
+import java.util.ConcurrentModificationException;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 
@@ -187,7 +194,6 @@ import java.util.NoSuchElementException;
     public void addLast(T o){
         addLastEntry(new Entry<T>(o));
     }
-
     private void addLastEntry(Entry<T> e) {
         modCount++;
         if(size ==0){
@@ -372,13 +378,322 @@ import java.util.NoSuchElementException;
         return -1;
     }
 
-    //Line 630
+    //从给定的索引开始，获取此列表上的ListIterator。此方法返回的ListIterator支持add、remove和set方法。
+    public ListIterator<T> listIterator(int index){
+        checkBoundsInclusive(index);
+        return new LinkedListItr<T>(index);
+    }
+    //列表上的列表迭代器。这个类跟踪它在列表中的位置以及它所处的两个列表项。
+    private final class LinkedListItr<I> implements ListIterator<I>{
+
+        private int konwnMod = modCount;
+        private Entry<I> next;
+        private Entry<I> previous;
+        private Entry<I> lastReturned;
+        private int position;
+
+        //初始化迭代器
+        public LinkedListItr(int index) {
+            if(index == size){
+                next = null;
+                previous = (Entry<I>) last;
+            }else{
+                next = (Entry<I>)getEntry(index);
+                previous = next.previous;
+            }
+            position = index;
+        }
+
+        //检查迭代器的一致性。
+        private void checkMod(){
+            if(konwnMod != modCount)
+                throw new ConcurrentModificationException();
+        }
+
+        //返回下一个元素的下标
+        public int nextIndex(){
+            return position;
+        }
+
+        //返回前一个元素的下标
+        public int previousIndex(){
+            return position-1;
+        }
+
+        //如果通过下一个元素存在更多元素，则返回true。
+        public boolean hasNext(){
+            return (next != null);
+        }
+
+        //如果先前存在更多元素，则返回true。
+        public boolean hasPrevious(){
+            return (previous != null);
+        }
+
+        //返回下一个元素
+        public I next(){
+            checkMod();
+            if(next == null)
+                throw new NoSuchElementException();
+            position++;
+            lastReturned = previous = next;
+            next = lastReturned.next;
+            return lastReturned.data;
+        }
+
+        //返回前一个元素
+        public I previous(){
+            checkMod();
+            if(previous == null)
+                throw new NoSuchElementException();
+            position--;
+            lastReturned = next = previous;
+            previous = lastReturned.previous;
+            return lastReturned.data;
+        }
+
+        //从列表中删除最近返回的元素
+        public void remove(){
+            checkMod();
+            if(lastReturned == null){
+                throw new IllegalStateException();
+            }
+            if(lastReturned == previous){
+                position--;
+            }
+
+            next = lastReturned.next;
+            previous  = lastReturned.previous;
+            removeEntry((Entry<T>)lastReturned);
+            
+            konwnMod++;
+            lastReturned = null;
+        }
+        
+        //在上一个和下一个之间添加元素，然后前进到下一个。
+        public void add(I o){
+            checkMod();
+            modCount++;
+            konwnMod++;
+            size++;
+            position++;
+            Entry<I> e = new Entry<I>(o);
+            e.previous = previous;
+            e.next = next;
+
+            if(previous != null)
+                previous.next = e;
+            else
+                first = (Entry<T>)e;
+
+            if(next != null){
+                next.previous = e;
+            }else{
+                last = (Entry<T>) e;
+            }
+            previous = e;
+            lastReturned = null;
+        }
+
+        //更改最近返回的元素的内容。
+        public void set(I o){
+            checkMod();
+            if(lastReturned == null){
+                throw new IllegalStateException();
+            }
+            lastReturned.data = o;
+        }
+    }
 
 
 
+    //LinkedList的浅拷贝
+    public Object clone(){
+        LinkedList<T> copy = null;
+        try{
+            copy = (LinkedList<T>) super.clone();
+        }catch(CloneNotSupportedException ex){
 
+        }
+        copy.clear();
+        copy.addAll(this);
+        return copy;
+    }
 
+    //返回按顺序包含列表元素的数组。
+    public Object[] toArray(){
+        Object[] array = new Object[size];
+        Entry<T> e = first;
+        for(int i=0;i<size;i++){
+            array[i] = e.data;
+            e = e.next;
+        }
+        return array;
+    }
 
+    //返回其组件类型为传入数组的运行时组件类型的数组。返回的数组将填充此LinkedList中的所有元素。
+    public <S> S[] toArray(S[] a){
+        if(a.length < size){
+            a = (S[])Array.newInstance(a.getClass().getComponentType(), size);
+        }else if(a.length > size){
+            a[size] = null;
+        }
+        Entry<T> e = first;
+        for(int i=0;i<size;i++){
+            a[i] = (S) e.data;
+            e = e.next;
+        }
+        return a;
+    }
 
+    //将指定的元素添加到列表的末尾。
+    public boolean offer(T value){
+        return add(value);
+    }
 
+    //返回列表的第一个元素而不删除它。
+    public T element(){
+        return getFirst();
+    }
+
+    //返回列表的第一个元素而不删除它。空值返回null
+    public T peek(){
+        if(size == 0){
+            return null;
+        }
+        return getFirst();
+    }
+
+    //删除并返回列表的第一个元素。空值返回null
+    public T poll(){
+        if(size == 0){
+            return null;
+        }
+        return removeFirst();
+    }
+
+    //删除并返回列表的第一个元素。
+    public T remove(){
+        return removeFirst();
+    }
+
+    //将此对象序列化为给定流。
+    private void writeObject(ObjectOutputStream s)throws IOException{
+        s.defaultWriteObject();
+        s.writeInt(size);
+        Entry<T> e = first;
+        while(e != null){
+            s.writeObject(e.data);
+            e = e.next;
+        }
+    }
+
+    //从给定流反序列化此对象。
+    private void readObject(ObjectInputStream s) throws IOException,ClassNotFoundException{
+        s.defaultReadObject();
+        int i = s.readInt();
+        while(--i >= 0){
+            addLastEntry(new Entry<T>((T) s.readObject()));
+        }
+    }
+
+    //按相反的顺序获取此列表上的迭代器。
+    public Iterator<T> descendIterator(){
+        return new Iterator<T>() {
+            private int konwnMod = modCount;
+            private Entry<T> next =last;
+            private Entry<T> lastReturned;
+            private int position = size() - 1;
+            //检查迭代过程中从其他地方对列表所做的修改。
+            private void checkMod(){
+                if(konwnMod != modCount)
+                    throw new ConcurrentModificationException();
+            }
+            public boolean hasNext(){
+                return next != null;
+            }
+            public T next(){
+                checkMod();
+                if(next == null)
+                    throw new NoSuchElementException();
+                --position;
+                lastReturned = next;
+                next = lastReturned.previous;
+                return lastReturned.data;
+            }
+            public void remove(){
+                checkMod();
+                if(lastReturned == null)
+                    throw new IllegalStateException();
+                removeEntry(lastReturned);
+                lastReturned = null;
+                ++konwnMod;
+            }
+        };
+    }
+
+    //在列表的前面插入指定的元素。
+    public boolean offerFirst(T value){
+        addFirst(value);
+        return true;
+    }
+
+    //在列表的后面插入指定的元素。
+    public boolean offerLast(T value){
+        return add(value);
+    }
+
+    //返回列表的第一个元素而不删除
+    public T peekFirst(){
+        return peek();
+    }
+
+    //返回列表的最后一个元素而不删除
+    public T peekLast(){
+        if(size == 0){
+            return null;
+        }
+        return getLast();
+    }
+
+    //删除并返回列表的第一个元素
+    public T pollFirst(){
+        return poll();
+    }
+
+    //删除并返回列表的最后一个元素
+    public T pollLast(){
+        if(size == 0){
+            return null;
+        }
+        return removeLast();
+    }
+
+    //通过移除并返回列表中的第一个元素，从堆栈中弹出一个元素。
+    public T pop(){
+        return removeFirst();
+    }
+
+    //通过将元素添加到列表的前面，将其推送到堆栈上。
+    public void push(T value) {
+        addFirst(value);
+    }
+
+    //从头到尾遍历列表时，从列表中删除指定元素的第一个匹配项。
+    public boolean removeFirstOccurrence(Object o){
+        return remove(o);
+    }
+
+    //从头到尾遍历列表时，从列表中删除指定元素的最后一个匹配项。
+    public boolean removeLastOccurrence(Object o){
+        Entry<T> e = last;
+        while(e!=null){
+            if(o.equals(e.data)){
+                removeEntry(e);
+                return true;
+            }
+            e = e.previous;
+        }
+        return false;
+    }
  }
