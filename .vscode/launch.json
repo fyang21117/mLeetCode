@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - VolatileTest",
+            "request": "launch",
+            "mainClass": "VolatileTest",
+            "projectName": "leetcode_a026e10e"
+        }
+    ]
+}
