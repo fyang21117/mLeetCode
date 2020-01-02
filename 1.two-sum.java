@@ -14,7 +14,7 @@ class Solution {
         //使用一次hashmap
         Map<Integer,Integer>map = new HashMap<>();
         for(int i=0;i<nums.length;i++){
-            int temp = target - nums[i];
+            int temp = nums[i] - target;
             if(map.containsKey(temp)){
                 return new int[]{map.get(temp),i};
             }

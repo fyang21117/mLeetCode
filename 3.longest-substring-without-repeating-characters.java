@@ -29,7 +29,7 @@ class Solution {
         //int [26] 用于字母 a-z,A-Z
         //int [128] 用于ASCII码
         //int [256] 用于扩展ASCII码
-
+        //2019年12月25日17:16:36
         int n = s.length(),ans = 0;
         int []index = new int[128];
         for(int j=0,i=0;j<n;j++){

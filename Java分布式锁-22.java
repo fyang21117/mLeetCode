@@ -33,7 +33,8 @@
 
 
 /***
- * 【分布式】基于Redis实现分布式锁:https://zhuanlan.zhihu.com/p/62274137
+ * 【分布式】
+ * 基于Redis实现分布式锁:https://zhuanlan.zhihu.com/p/62274137
  * 【特性】
  * 安全特性：互斥访问，即永远只有一个 client 能拿到锁
  * 避免死锁：最终 client 都可能拿到锁，不会出现死锁的情况，即使原本锁住某资源的 client crash 了或者出现了网络分区
