@@ -92,8 +92,9 @@ public class CopyOnWriteArrayList<E> implements List<E>, RandomAccess, Cloneable
 
     /**
      * 【增】
-     * CopyOnWriteArrayList刚创建时，默认的大小为0，
-     * 当向其插入一个元素时，将原数组复制到一个比原数组大1的新数组中，然后直接将插入的元素放置到新数组末尾，之后修改array引用到新数组就可以，原来的数组就会被垃圾收集器回收。
+     * CopyOnWriteArrayList刚创建时，默认的大小为0，当向其插入一个元素时，将原数组复制到一个比原数组大1的新数组中，
+     * 然后直接将插入的元素放置到新数组末尾，之后修改array引用到新数组就可以，原来的数组就会被垃圾收集器回收。
+     * 
      * 初始化为什么要设置数组大小为0呢?
      * 这是因为每次进行添加操作时，都会复制原数组到新的数组中，相当于CopyOnWriteArrayList在进行add操作时，实际占用的空间是原来的两倍，
      * 这样的空间开销，导致了CopyOnWriteArrayList不能像ArrayList那样初始化大小为10，不然太浪费空间了，而且CopyOnWriteArrayList主要用于读多写少的地方。

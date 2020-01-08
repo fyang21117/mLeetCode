@@ -12,15 +12,17 @@ class Solution {
     public int[] twoSum(int[] nums, int target) {
         //2019-12-13
         //使用一次hashmap
-        Map<Integer,Integer>map = new HashMap<>();
-        for(int i=0;i<nums.length;i++){
-            int temp = nums[i] - target;
-            if(map.containsKey(temp)){
-                return new int[]{map.get(temp),i};
-            }
-            map.put(nums[i],i);
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            map.put(nums[i], i);
         }
-        throw new IllegalArgumentException("NO two sum solution");
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement) && map.get(complement) != i) {
+                return new int[] { i, map.get(complement) };
+            }
+        }
+        throw new IllegalArgumentException("No two sum solution");
     }
 }
 // @lc code=end
